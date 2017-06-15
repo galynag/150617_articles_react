@@ -30,6 +30,9 @@ aside {
     vertical-align: top;
     margin-right: 5%;
 }
+ul {
+    width: 100%;
+}
 a {
     text-decoration: none;
 }
@@ -40,6 +43,7 @@ aside ul li {
     background: lightgrey;
     text-align: center;
     padding: 5px;
+    border: 1px solid grey;
 }
 input {
     display: block;
@@ -71,4 +75,36 @@ body {
 .movies-item img:hover {
     transform: rotate(15deg);
     transition: 30ms;
+}
+#logo {
+    height: 70px;
+    width: 70px;
+    background-image: url(../img/_shopping-128.png);
+    background-size: cover;
+    display: inline-block;
+}
+header {
+    width: 100%;
+    vertical-align: middle;
+}
+header h1 {
+    width: 60%;
+    height: 100%;
+    display: inline-block;
+    text-align: center;
+    vertical-align: top;
+}
+header input {
+    display: inline-block;
+    width: 30%;
+    height: 100%;
+    margin: 30px auto;
+    vertical-align: top;
+}
+#reclama {
+    width: 100%;
+    height: 300px;
+    background-image: url(../img/4.jpg);
+    background-size: cover;
+    background-position: center center;
 }

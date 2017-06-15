@@ -11,6 +11,7 @@ export default class MainLayout extends Component {
                         <li><Link to="/mvc">MVC</Link></li>
                         <li><Link to="/articles">Articles</Link></li>
                         <li><Link to="/movies">Movies</Link></li>
+                        <li><Link to="/store">Books Store</Link></li>
                     </ul>
                 </aside>
                 <main>

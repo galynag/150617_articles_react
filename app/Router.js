@@ -6,6 +6,7 @@ import Home from './components/home';
 import Movies from './components/Movies';
 import Mvc from './components/Mvc';
 import Articles from './components/Articles';
+import Store from './components/Store';
 
 
 
@@ -23,6 +24,9 @@ export default (
             </Route>
             <Route path="/movies">
                 <IndexRoute component={Movies} />
+            </Route>
+            <Route path="/store">
+                <IndexRoute component={Store} />
             </Route>
         </Route>
     </Router>

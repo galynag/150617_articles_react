@@ -19794,6 +19794,10 @@
 	
 	var _Articles2 = _interopRequireDefault(_Articles);
 	
+	var _Store = __webpack_require__(249);
+	
+	var _Store2 = _interopRequireDefault(_Store);
+	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
 	exports.default = _react2.default.createElement(
@@ -19821,6 +19825,11 @@
 	            _reactRouter.Route,
 	            { path: '/movies' },
 	            _react2.default.createElement(_reactRouter.IndexRoute, { component: _Movies2.default })
+	        ),
+	        _react2.default.createElement(
+	            _reactRouter.Route,
+	            { path: '/store' },
+	            _react2.default.createElement(_reactRouter.IndexRoute, { component: _Store2.default })
 	        )
 	    )
 	);
@@ -24987,6 +24996,15 @@
 	                                { to: '/movies' },
 	                                'Movies'
 	                            )
+	                        ),
+	                        _react2.default.createElement(
+	                            'li',
+	                            null,
+	                            _react2.default.createElement(
+	                                _reactRouter.Link,
+	                                { to: '/store' },
+	                                'Books Store'
+	                            )
 	                        )
 	                    )
 	                ),
@@ -27063,6 +27081,169 @@
 	}(_react.Component);
 	
 	exports.default = Articles;
+
+/***/ }),
+/* 249 */
+/***/ (function(module, exports, __webpack_require__) {
+
+	'use strict';
+	
+	Object.defineProperty(exports, "__esModule", {
+	    value: true
+	});
+	
+	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+	
+	var _react = __webpack_require__(1);
+	
+	var _react2 = _interopRequireDefault(_react);
+	
+	var _axios = __webpack_require__(221);
+	
+	var _axios2 = _interopRequireDefault(_axios);
+	
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+	
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+	
+	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+	
+	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+	
+	var Movies = function (_Component) {
+	    _inherits(Movies, _Component);
+	
+	    function Movies() {
+	        var _ref;
+	
+	        var _temp, _this, _ret;
+	
+	        _classCallCheck(this, Movies);
+	
+	        for (var _len = arguments.length, args = Array(_len), _key = 0; _key < _len; _key++) {
+	            args[_key] = arguments[_key];
+	        }
+	
+	        return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = Movies.__proto__ || Object.getPrototypeOf(Movies)).call.apply(_ref, [this].concat(args))), _this), _this.state = {
+	            search: '',
+	            books: [],
+	            loading: true,
+	            error: null
+	        }, _this.valueInput = function (e) {
+	            _this.setState({ search: e.target.value });
+	        }, _temp), _possibleConstructorReturn(_this, _ret);
+	    }
+	
+	    _createClass(Movies, [{
+	        key: 'componentDidMount',
+	        value: function componentDidMount() {
+	            var _this2 = this;
+	
+	            _axios2.default.get('https://www.googleapis.com/books/v1/volumes?q=Harry&key=AIzaSyCDy-A1SQbLzpDYPzCrm2xf-8VIeFoD_gU').then(function (res) {
+	                _this2.setState({
+	                    books: res.data.items,
+	                    loading: false,
+	                    error: null
+	                });
+	            }).catch(function (err) {
+	                _this2.setState({
+	                    loading: false,
+	                    error: err
+	                });
+	            });
+	        }
+	    }, {
+	        key: 'renderLoading',
+	        value: function renderLoading() {
+	            return _react2.default.createElement(
+	                'div',
+	                null,
+	                'Loading...'
+	            );
+	        }
+	    }, {
+	        key: 'renderError',
+	        value: function renderError() {
+	            return _react2.default.createElement(
+	                'div',
+	                null,
+	                'Something went wrong ',
+	                this.state.error.message
+	            );
+	        }
+	    }, {
+	        key: 'renderPosts',
+	        value: function renderPosts() {
+	            var _this3 = this;
+	
+	            var _state = this.state,
+	                error = _state.error,
+	                books = _state.books;
+	
+	            var booksNewArray = books.filter(function (item) {
+	                var input2 = _this3.state.search.toLowerCase();
+	                var item2 = item.volumeInfo.title.toLowerCase();
+	                if (item2.indexOf(input2) >= 0) {
+	                    return true;
+	                }
+	            });
+	
+	            if (error) {
+	                return this.renderError;
+	            }
+	
+	            return _react2.default.createElement(
+	                'div',
+	                null,
+	                booksNewArray.map(function (item) {
+	                    return _react2.default.createElement(
+	                        'div',
+	                        { key: item.id, className: 'movies-item' },
+	                        _react2.default.createElement('img', { src: item.volumeInfo.imageLinks.smallThumbnail, alt: item.volumeInfo.title }),
+	                        _react2.default.createElement(
+	                            'a',
+	                            { href: '#', target: '_blank' },
+	                            item.volumeInfo.title
+	                        )
+	                    );
+	                })
+	            );
+	        }
+	    }, {
+	        key: 'render',
+	        value: function render() {
+	            var loading = this.state.loading;
+	
+	
+	            return _react2.default.createElement(
+	                'div',
+	                null,
+	                _react2.default.createElement(
+	                    'header',
+	                    null,
+	                    _react2.default.createElement('div', { id: 'logo' }),
+	                    _react2.default.createElement(
+	                        'h1',
+	                        null,
+	                        'Book Store'
+	                    ),
+	                    _react2.default.createElement('input', {
+	                        type: 'text',
+	                        placeholder: 'Enter text for filter',
+	                        value: this.state.search,
+	                        onChange: this.valueInput
+	                    })
+	                ),
+	                _react2.default.createElement('div', { id: 'reclama' }),
+	                loading ? this.renderLoading() : this.renderPosts()
+	            );
+	        }
+	    }]);
+	
+	    return Movies;
+	}(_react.Component);
+	
+	exports.default = Movies;
 
 /***/ })
 /******/ ]);
