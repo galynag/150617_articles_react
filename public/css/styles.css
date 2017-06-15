@@ -1,0 +1,74 @@
+.app {
+  display: flex;
+}
+
+aside.primary-aside {
+  width: 200px;
+}
+
+aside.primary-aside a.active {
+    font-weight: bold;
+}
+
+main {
+  flex: 1;
+}
+
+.container {
+    display: block;
+    width: 80%;
+    margin: 30px auto;
+}
+aside, main {
+    display: inline-block;
+}
+main {
+    width: 70%;
+}
+aside {
+    width: 10%;
+    vertical-align: top;
+    margin-right: 5%;
+}
+a {
+    text-decoration: none;
+}
+aside ul li {
+    list-style: none;
+    border-radius: 3px;
+    margin: 5px 10px 5px 0;
+    background: lightgrey;
+    text-align: center;
+    padding: 5px;
+}
+input {
+    display: block;
+    width: 50%;
+    margin: 30px auto;
+}
+body {
+    background-image: url(../background1.jpg);
+}
+.movies-item {
+    width: 30%;
+    display: inline-block;
+    margin: 10px;
+    vertical-align: top;
+    position: relative;
+}
+.movies-item:after, .movies-item:before{
+    content: '';
+    clear: both;
+    display: block;
+}
+.movies-item p {
+    text-align: justify;
+}
+.movies-item img {
+    display: block;
+    margin: 0 auto;
+}
+.movies-item img:hover {
+    transform: rotate(15deg);
+    transition: 30ms;
+}
