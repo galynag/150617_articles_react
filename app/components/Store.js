@@ -12,7 +12,7 @@ export default class Movies extends Component {
         this.setState({search: e.target.value})
     };
     componentDidMount () {
-        axios.get('https://www.googleapis.com/books/v1/volumes?q=Harry&key=AIzaSyCDy-A1SQbLzpDYPzCrm2xf-8VIeFoD_gU')
+        axios.get('https://www.googleapis.com/books/v1/volumes?q=Harry&key=AIzaSyA7gjbadpyT8hPDfVfPUpbZFkhKwfi_C0A')
             .then(res => {
                 this.setState({
                     books: res.data.items,
